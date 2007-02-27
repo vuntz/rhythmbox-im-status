@@ -1,0 +1,6 @@
+We can't reset to the default string since we have to pass "" as status.
+ => see http://bugzilla.gnome.org/show_bug.cgi?id=410398
+
+Test with new dbus-python
+
+playing_song_property_changed(): only update the status if the property is artist or title
