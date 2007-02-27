@@ -1,4 +1,4 @@
-Gossip plugin for Rhythmbox 0.1
+Gossip plugin for Rhythmbox 0.2
 ===============================
 
 Author: Vincent Untz <vuntz@gnome.org>
@@ -7,8 +7,8 @@ Main bzr branch: http://www.vuntz.net/bzr/rhythmbox-plugins/
 
 ** Installation **
 
-To install this plugin, you only have to copy the gossip directory to
-~/.gnome2/rhythmbox/plugins/
+To install this plugin, you only have to copy the plugin directory to
+~/.gnome2/rhythmbox/plugins/gossip
 
 It should just work when you enable it in the plugin dialog of Rhythmbox.
 
