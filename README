@@ -1,9 +1,12 @@
-Gossip plugin for Rhythmbox 0.2
-===============================
+Gossip Status - Rhythmbox plugin - 0.3
+======================================
 
 Author: Vincent Untz <vuntz@gnome.org>
 Licence: GPLv2
 Main bzr branch: http://www.vuntz.net/bzr/rhythmbox-plugins/
+
+This Rhythmbox plugin updates the status in Gossip according to the current
+playing song.
 
 ** Installation **
 

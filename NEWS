@@ -1,0 +1,16 @@
+0.3
+===
+
+Make sure the plugin works with latest dbus-python bindings.
+Rename init.py to __init__.py so that people can use the plugin :-)
+
+0.2
+===
+
+Update README.
+Rename gossip.py to init.py.
+
+0.1
+===
+
+Initial release

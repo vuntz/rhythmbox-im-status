@@ -19,7 +19,6 @@
 
 import rhythmdb, rb
 import dbus
-from dbus import dbus_bindings
 
 BUS_NAME = 'org.gnome.Gossip'
 OBJ_PATH = '/org/gnome/Gossip'
@@ -91,5 +90,5 @@ class GossipStatusPlugin (rb.Plugin):
 
       state, status = gossip.GetPresence ("")
       gossip.SetPresence (state, new_status)
-    except dbus_bindings.DBusException:
+    except dbus.DBusException:
       pass
