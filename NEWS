@@ -1,3 +1,13 @@
+0.4
+===
+
+Update README to explain the known "bug" caused by Gossip not correctly
+dealing with an empty status.
+When stopping playing, reset the status (since the user is no longer listening)
+Save the original Gossip status, and use it when reseting the status.
+Don't uselessly change the status when a song property is changed, but
+it wouldn't affect the status.
+
 0.3
 ===
 

@@ -29,6 +29,8 @@ class GossipStatusPlugin (rb.Plugin):
     rb.Plugin.__init__ (self)
 
   def activate (self, shell):
+    self.saved_state = self.get_status ()
+
     self.shell = shell
     sp = shell.get_player ()
     self.psc_id  = sp.connect ('playing-song-changed',
@@ -40,8 +42,9 @@ class GossipStatusPlugin (rb.Plugin):
 
     self.current_entry = None
 
-    entry = sp.get_playing_entry ()
-    self.playing_entry_changed (sp, entry)
+    if sp.get_playing ():
+      entry = sp.get_playing_entry ()
+      self.playing_entry_changed (sp, entry)
 
   def deactivate (self, shell):
     self.shell = None
@@ -51,16 +54,21 @@ class GossipStatusPlugin (rb.Plugin):
     sp.disconnect (self.pspc_id)
 
     if self.current_entry is not None:
-      self.set_status ("")
+      self.set_status (self.saved_state)
 
   def playing_changed (self, sp, playing):
-    self.set_entry (sp.get_playing_entry ())
+    if playing:
+      self.set_entry (sp.get_playing_entry ())
+    else:
+      self.set_status (self.saved_state)
 
   def playing_entry_changed (self, sp, entry):
-    self.set_entry (entry)
+    if sp.get_playing ():
+      self.set_entry (entry)
 
   def playing_song_property_changed (self, sp, uri, property, old, new):
-    self.set_status_from_entry ()
+    if sp.get_playing () and (property == "artist" or property == "title"):
+      self.set_status_from_entry ()
 
   def set_entry (self, entry):
     if entry == self.current_entry:
@@ -69,7 +77,7 @@ class GossipStatusPlugin (rb.Plugin):
     self.current_entry = entry
 
     if entry is None:
-      self.set_status ("")
+      self.set_status (self.saved_state)
       return
 
     self.set_status_from_entry ()
@@ -92,3 +100,14 @@ class GossipStatusPlugin (rb.Plugin):
       gossip.SetPresence (state, new_status)
     except dbus.DBusException:
       pass
+
+  def get_status (self):
+    try:
+      bus = dbus.SessionBus ()
+      gossip_obj = bus.get_object (BUS_NAME, OBJ_PATH)
+      gossip = dbus.Interface (gossip_obj, IFACE_NAME)
+
+      state, status = gossip.GetPresence ("")
+      return status
+    except dbus.DBusException:
+      return ""
