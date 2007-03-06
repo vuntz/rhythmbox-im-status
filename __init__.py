@@ -60,6 +60,7 @@ class GossipStatusPlugin (rb.Plugin):
     if playing:
       self.set_entry (sp.get_playing_entry ())
     else:
+      self.current_entry = None
       self.set_status (self.saved_state)
 
   def playing_entry_changed (self, sp, entry):
