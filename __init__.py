@@ -43,8 +43,7 @@ class GossipStatusPlugin (rb.Plugin):
     self.current_entry = None
 
     if sp.get_playing ():
-      entry = sp.get_playing_entry ()
-      self.playing_entry_changed (sp, entry)
+      self.set_entry (sp.get_playing_entry ())
 
   def deactivate (self, shell):
     self.shell = None
@@ -75,6 +74,8 @@ class GossipStatusPlugin (rb.Plugin):
     if entry == self.current_entry:
       return
 
+    if self.current_entry == None:
+      self.saved_state = self.get_status ()
     self.current_entry = entry
 
     if entry is None:

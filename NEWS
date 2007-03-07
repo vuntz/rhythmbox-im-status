@@ -1,3 +1,9 @@
+0.6
+===
+
+Resave the gossip status when returning from pause, because the user might
+have changed it since he activated the plugin.
+
 0.5
 ===
 
