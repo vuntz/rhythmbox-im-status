@@ -1,21 +1,28 @@
-Gossip Status - Rhythmbox plugin - 0.6
-======================================
+IM Status - Rhythmbox plugin - 0.7
+==================================
 
 Author: Vincent Untz <vuntz@gnome.org>
 Licence: GPLv2
 Main bzr branch: http://www.vuntz.net/bzr/rhythmbox-plugins/
 
-This Rhythmbox plugin updates the status in Gossip according to the current
-playing song.
+This Rhythmbox plugin updates the status in various IM clients (Empathy and
+Gossip are currently supported) according to the current playing song.
 
-There is one known bug: when you deactivate the plugin, or quit Rhythmbox,
-your status is set to "". This is in fact a bug in Gossip <= 0.22. See
-http://bugzilla.gnome.org/show_bug.cgi?id=410398 for details.
+Here is the list of known bugs:
+
+ + with Gossip <= 0.22: when you deactivate the plugin, or quit Rhythmbox,
+   your status is set to "". This has been fixed in Gossip. See
+   http://bugzilla.gnome.org/show_bug.cgi?id=410398 for details.
+
+ + with Empathy and some old version of mission-control: the plugin doesn't
+   work because mission-control didn't emit a signal when the status message is
+   changed but the status itself doesn't change. This has been fixed in later
+   releases of mission-control.
 
 ** Installation **
 
 To install this plugin, you only have to copy the plugin directory to
-~/.gnome2/rhythmbox/plugins/gossip
+~/.gnome2/rhythmbox/plugins/im-status
 
 It should just work when you enable it in the plugin dialog of Rhythmbox.
 
